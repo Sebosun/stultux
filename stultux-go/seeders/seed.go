@@ -23,6 +23,7 @@ func InitSeed() {
 	seedCountries(dbQueries)
 	seedGermanNames(dbQueries)
 	seedGermanLast(dbQueries)
+    seedPasswords(dbQueries)
 }
 
 func seedGermanNames(db *database.Queries) {
@@ -118,7 +119,8 @@ func seedCountries(db *database.Queries) {
 }
 
 func seedPasswords(db *database.Queries) {
-
+	fmt.Println("=== Seeding Passwords ===")
+	ctx := context.Background()
 	passwords := []string{
 		"TaxFraudSpeedrun", 
         "BankSaysImJoking", 
@@ -140,7 +142,6 @@ func seedPasswords(db *database.Queries) {
 		"YakuzaBitcoinRug",
 		"DeathNoteForDebtsUK",
 		"BleachMyBankBalanceDE",
-		"LoliconLockedMeOut",
 		"HellsingOffshoreHK",
 		"GundamFakeIDBR",
 		"NeonGenesisPonzi",
@@ -148,7 +149,14 @@ func seedPasswords(db *database.Queries) {
         "ArmySurplusKatanaBR",
 		"OverlordOfUnpaidLoans",
         "FavelaWiFiAteMyBitcoin",
+        "ZUSOkrutnyJakDoflamingo",
     }
 
 
+	for _, v := range passwords {
+		_, err := db.InsertPassword(ctx, v)
+		if err != nil {
+			fmt.Println("Errr string already in db", v)
+		}
+	}
 }
