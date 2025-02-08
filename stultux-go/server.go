@@ -35,6 +35,7 @@ func runServer() {
 	e.GET("/swagger/*", echoSwagger.WrapHandler)
 
 	e.GET("/hello", HelloHandler)
+	e.POST("/api/v1/user", CreateUser)
 
 	portFormatted := fmt.Sprintf(":%s", port)
 	e.Logger.Fatal(e.Start(portFormatted))
@@ -49,5 +50,9 @@ func runServer() {
 // @Success 200 {object} map[string]string
 // @Router /hello [get]
 func HelloHandler(c echo.Context) error {
+	return c.JSON(http.StatusOK, map[string]string{"message": "Hello, World!"})
+}
+
+func CreateUser(c echo.Context) error {
 	return c.JSON(http.StatusOK, map[string]string{"message": "Hello, World!"})
 }

@@ -29,3 +29,11 @@ type Country struct {
 	CountryCode string
 	CountryName string
 }
+
+type User struct {
+	ID          int32
+	Name        sql.NullString
+	LastName    sql.NullString
+	Password    sql.NullString
+	CountryCode sql.NullString
+}
