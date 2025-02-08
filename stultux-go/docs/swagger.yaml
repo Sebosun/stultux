@@ -1,0 +1,26 @@
+basePath: /api
+host: localhost:1323
+info:
+  contact: {}
+  description: This is a sample API using Swaggo.
+  title: My API
+  version: "1.0"
+paths:
+  /hello:
+    get:
+      consumes:
+      - application/json
+      description: This endpoint returns a simple hello message
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Returns a simple greeting
+      tags:
+      - example
+swagger: "2.0"
