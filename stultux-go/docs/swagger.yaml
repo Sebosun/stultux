@@ -1,10 +1,5 @@
-basePath: /api
-host: localhost:1323
 info:
   contact: {}
-  description: This is a sample API using Swaggo.
-  title: My API
-  version: "1.0"
 paths:
   /hello:
     get:
