@@ -20,6 +20,11 @@ type AvailableName struct {
 	CountryCode sql.NullString
 }
 
+type AvailablePassword struct {
+	ID       int32
+	Password string
+}
+
 type Country struct {
 	CountryCode string
 	CountryName string

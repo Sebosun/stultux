@@ -15,7 +15,7 @@ import (
 	"github.com/sebosun/stultux/internal/database"
 )
 
-func RunServer() {
+func runServer() {
 	dbURL := os.Getenv("DB_URL")
 	port := os.Getenv("PORT")
 	db, err := sql.Open("postgres", dbURL)

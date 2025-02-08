@@ -20,11 +20,13 @@ func InitSeed() {
 
 	dbQueries := database.New(db)
 
-	/* seedCountries(dbQueries) */
-    seedGermanNames(dbQueries)
+	seedCountries(dbQueries)
+	seedGermanNames(dbQueries)
+	seedGermanLast(dbQueries)
 }
 
 func seedGermanNames(db *database.Queries) {
+	fmt.Println("=== Seeding German First Names ===")
 	ctx := context.Background()
 	namesMap := []database.InsertNameParams{
 		{Name: "Emma", CountryCode: sql.NullString{String: "DE", Valid: true}},
@@ -51,14 +53,51 @@ func seedGermanNames(db *database.Queries) {
 	for _, v := range namesMap {
 		_, err := db.InsertName(ctx, v)
 		if err != nil {
-			fmt.Println("Errr string already in db", v.CountryCode.String)
+			fmt.Println("Errr string already in db", v.Name)
 		}
 	}
 
 }
 
+func seedGermanLast(db *database.Queries) {
+	fmt.Println("=== Seeding German Last Names ===")
+	ctx := context.Background()
+	names := []struct {
+		Name        string
+		CountryCode sql.NullString
+	}{
+		{Name: "Müller", CountryCode: sql.NullString{String: "DE", Valid: true}},
+		{Name: "Schmidt", CountryCode: sql.NullString{String: "DE", Valid: true}},
+		{Name: "Schneider", CountryCode: sql.NullString{String: "DE", Valid: true}},
+		{Name: "Fischer", CountryCode: sql.NullString{String: "DE", Valid: true}},
+		{Name: "Weber", CountryCode: sql.NullString{String: "DE", Valid: true}},
+		{Name: "Meyer", CountryCode: sql.NullString{String: "DE", Valid: true}},
+		{Name: "Wagner", CountryCode: sql.NullString{String: "DE", Valid: true}},
+		{Name: "Becker", CountryCode: sql.NullString{String: "DE", Valid: true}},
+		{Name: "Schulz", CountryCode: sql.NullString{String: "DE", Valid: true}},
+		{Name: "Hoffmann", CountryCode: sql.NullString{String: "DE", Valid: true}},
+		{Name: "Koch", CountryCode: sql.NullString{String: "DE", Valid: true}},
+		{Name: "Bauer", CountryCode: sql.NullString{String: "DE", Valid: true}},
+		{Name: "Richter", CountryCode: sql.NullString{String: "DE", Valid: true}},
+		{Name: "Klein", CountryCode: sql.NullString{String: "DE", Valid: true}},
+		{Name: "Wolf", CountryCode: sql.NullString{String: "DE", Valid: true}},
+		{Name: "Schröder", CountryCode: sql.NullString{String: "DE", Valid: true}},
+		{Name: "Neumann", CountryCode: sql.NullString{String: "DE", Valid: true}},
+		{Name: "Braun", CountryCode: sql.NullString{String: "DE", Valid: true}},
+		{Name: "Zimmermann", CountryCode: sql.NullString{String: "DE", Valid: true}},
+		{Name: "Hartmann", CountryCode: sql.NullString{String: "DE", Valid: true}},
+	}
+
+	for _, v := range names {
+		_, err := db.InsertLastName(ctx, v)
+		if err != nil {
+			fmt.Println("Errr string already in db", v.Name)
+		}
+	}
+}
+
 func seedCountries(db *database.Queries) {
-	//The fuck does that even do? TODO: Check it out
+	fmt.Println("=== Seeding Countries ===")
 	ctx := context.Background()
 	countriesMap := []database.InsertCountryParams{
 		{CountryName: "Germany", CountryCode: "DE"},
@@ -70,7 +109,46 @@ func seedCountries(db *database.Queries) {
 	}
 
 	for _, v := range countriesMap {
-		db.InsertCountry(ctx, v)
+		_, err := db.InsertCountry(ctx, v)
+		if err != nil {
+			fmt.Println("Errr string already in db", v.CountryCode)
+		}
 	}
+
+}
+
+func seedPasswords(db *database.Queries) {
+
+	passwords := []string{
+		"TaxFraudSpeedrun", 
+        "BankSaysImJoking", 
+        "OopsIDidWarCrime2", 
+        "EpsteinLoggedIn", 
+        "DarkWebDad96",
+		"Bankai4BankFraudJP",
+		"NarutoTaxEvasion420",
+		"GokuScammedMeUS",
+		"OnePiecePonziRU",
+		"OverdraftNoJutsu69",
+		"FBI_OpenUp_Tokyo",
+		"CryptoUzumaki1337",
+		"TaxFraudNoKaisen",
+		"EvangelionBankruptFR",
+		"SasukeGotMyPESEL",
+		"FullmetalWelfareCheck",
+		"PayPalChargebackIT",
+		"YakuzaBitcoinRug",
+		"DeathNoteForDebtsUK",
+		"BleachMyBankBalanceDE",
+		"LoliconLockedMeOut",
+		"HellsingOffshoreHK",
+		"GundamFakeIDBR",
+		"NeonGenesisPonzi",
+		"ZelleMeUrRentSP",
+        "ArmySurplusKatanaBR",
+		"OverlordOfUnpaidLoans",
+        "FavelaWiFiAteMyBitcoin",
+    }
+
 
 }

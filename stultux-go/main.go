@@ -28,7 +28,8 @@ func main() {
             fmt.Println("init seed")
 			seeders.InitSeed()
 		}
+        return
 	} 
 
-    RunServer()
+    runServer()
 }
