@@ -7,7 +7,6 @@ package database
 
 import (
 	"context"
-	"database/sql"
 )
 
 const insertName = `-- name: InsertName :one
@@ -22,7 +21,7 @@ RETURNING id, name, country_code
 
 type InsertNameParams struct {
 	Name        string
-	CountryCode sql.NullString
+	CountryCode string
 }
 
 func (q *Queries) InsertName(ctx context.Context, arg InsertNameParams) (AvailableName, error) {

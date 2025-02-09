@@ -3,7 +3,7 @@
 CREATE TABLE available_last (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL UNIQUE,
-    country_code CHAR(2) REFERENCES countries(country_code) ON DELETE RESTRICT
+    country_code CHAR(2) REFERENCES countries(country_code) ON DELETE RESTRICT NOT NULL
 );
 -- +goose StatementEnd
 

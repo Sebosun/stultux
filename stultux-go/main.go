@@ -68,7 +68,10 @@ func main() {
     g := e.Group("/api/v1")
 
 	g.GET("/hello", apiConfig.HelloHandler)
+
 	g.POST("/user", apiConfig.CreateUser)
+
+	g.GET("/registration", apiConfig.GetRegistrationDetails)
 
 	e.GET("/swagger/*", echoSwagger.WrapHandler)
 

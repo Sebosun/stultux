@@ -23,33 +23,33 @@ func InitSeed() {
 	seedCountries(dbQueries)
 	seedGermanNames(dbQueries)
 	seedGermanLast(dbQueries)
-    seedPasswords(dbQueries)
+	seedPasswords(dbQueries)
 }
 
 func seedGermanNames(db *database.Queries) {
 	fmt.Println("=== Seeding German First Names ===")
 	ctx := context.Background()
 	namesMap := []database.InsertNameParams{
-		{Name: "Emma", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Mia", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Hannah", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Lea", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Sophia", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Lina", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Marie", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Anna", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Johanna", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Luisa", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Paul", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Ben", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Noah", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Leon", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Finn", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Luis", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Elias", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Jonas", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Maximilian", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Felix", CountryCode: sql.NullString{String: "DE", Valid: true}}}
+		{Name: "Emma", CountryCode: "DE"},
+		{Name: "Mia", CountryCode: "DE"},
+		{Name: "Hannah", CountryCode: "DE"},
+		{Name: "Lea", CountryCode: "DE"},
+		{Name: "Sophia", CountryCode: "DE"},
+		{Name: "Lina", CountryCode: "DE"},
+		{Name: "Marie", CountryCode: "DE"},
+		{Name: "Anna", CountryCode: "DE"},
+		{Name: "Johanna", CountryCode: "DE"},
+		{Name: "Luisa", CountryCode: "DE"},
+		{Name: "Paul", CountryCode: "DE"},
+		{Name: "Ben", CountryCode: "DE"},
+		{Name: "Noah", CountryCode: "DE"},
+		{Name: "Leon", CountryCode: "DE"},
+		{Name: "Finn", CountryCode: "DE"},
+		{Name: "Luis", CountryCode: "DE"},
+		{Name: "Elias", CountryCode: "DE"},
+		{Name: "Jonas", CountryCode: "DE"},
+		{Name: "Maximilian", CountryCode: "DE"},
+		{Name: "Felix", CountryCode: "DE"}}
 
 	for _, v := range namesMap {
 		_, err := db.InsertName(ctx, v)
@@ -65,28 +65,28 @@ func seedGermanLast(db *database.Queries) {
 	ctx := context.Background()
 	names := []struct {
 		Name        string
-		CountryCode sql.NullString
+		CountryCode string
 	}{
-		{Name: "Müller", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Schmidt", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Schneider", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Fischer", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Weber", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Meyer", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Wagner", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Becker", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Schulz", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Hoffmann", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Koch", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Bauer", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Richter", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Klein", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Wolf", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Schröder", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Neumann", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Braun", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Zimmermann", CountryCode: sql.NullString{String: "DE", Valid: true}},
-		{Name: "Hartmann", CountryCode: sql.NullString{String: "DE", Valid: true}},
+		{Name: "Müller", CountryCode: "DE"},
+		{Name: "Schmidt", CountryCode: "DE"},
+		{Name: "Schneider", CountryCode: "DE"},
+		{Name: "Fischer", CountryCode: "DE"},
+		{Name: "Weber", CountryCode: "DE"},
+		{Name: "Meyer", CountryCode: "DE"},
+		{Name: "Wagner", CountryCode: "DE"},
+		{Name: "Becker", CountryCode: "DE"},
+		{Name: "Schulz", CountryCode: "DE"},
+		{Name: "Hoffmann", CountryCode: "DE"},
+		{Name: "Koch", CountryCode: "DE"},
+		{Name: "Bauer", CountryCode: "DE"},
+		{Name: "Richter", CountryCode: "DE"},
+		{Name: "Klein", CountryCode: "DE"},
+		{Name: "Wolf", CountryCode: "DE"},
+		{Name: "Schröder", CountryCode: "DE"},
+		{Name: "Neumann", CountryCode: "DE"},
+		{Name: "Braun", CountryCode: "DE"},
+		{Name: "Zimmermann", CountryCode: "DE"},
+		{Name: "Hartmann", CountryCode: "DE"},
 	}
 
 	for _, v := range names {
@@ -122,11 +122,11 @@ func seedPasswords(db *database.Queries) {
 	fmt.Println("=== Seeding Passwords ===")
 	ctx := context.Background()
 	passwords := []string{
-		"TaxFraudSpeedrun", 
-        "BankSaysImJoking", 
-        "OopsIDidWarCrime2", 
-        "EpsteinLoggedIn", 
-        "DarkWebDad96",
+		"TaxFraudSpeedrun",
+		"BankSaysImJoking",
+		"OopsIDidWarCrime2",
+		"EpsteinLoggedIn",
+		"DarkWebDad96",
 		"Bankai4BankFraudJP",
 		"NarutoTaxEvasion420",
 		"GokuScammedMeUS",
@@ -146,12 +146,11 @@ func seedPasswords(db *database.Queries) {
 		"GundamFakeIDBR",
 		"NeonGenesisPonzi",
 		"ZelleMeUrRentSP",
-        "ArmySurplusKatanaBR",
+		"ArmySurplusKatanaBR",
 		"OverlordOfUnpaidLoans",
-        "FavelaWiFiAteMyBitcoin",
-        "ZUSOkrutnyJakDoflamingo",
-    }
-
+		"FavelaWiFiAteMyBitcoin",
+		"ZUSOkrutnyJakDoflamingo",
+	}
 
 	for _, v := range passwords {
 		_, err := db.InsertPassword(ctx, v)

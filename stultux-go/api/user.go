@@ -38,18 +38,18 @@ func (cfg *ApiConfig) CreateUser(c echo.Context) error {
 	}
 
 	user := database.CreateUserParams{
-		Name:        getNullString(u.Name),
-		LastName:    getNullString(u.LastName),
-		Password:    getNullString(u.Password),
-		CountryCode: getNullString(u.CountryCode),
+		Username:    u.Name + u.LastName,
+		Password:    u.Password,
+		CountryCode: u.CountryCode,
 	}
 
 	ok, err := cfg.DB.CreateUser(c.Request().Context(), user)
 
 	if err != nil {
-        fmt.Printf("Error %s \n", err)
+		fmt.Printf("Error %s \n", err)
 		return c.JSON(http.StatusBadRequest, "User either exists or some items are already taken")
 	}
 
 	return c.JSON(http.StatusOK, ok)
+
 }

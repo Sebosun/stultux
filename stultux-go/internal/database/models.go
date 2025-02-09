@@ -4,20 +4,16 @@
 
 package database
 
-import (
-	"database/sql"
-)
-
 type AvailableLast struct {
 	ID          int32
 	Name        string
-	CountryCode sql.NullString
+	CountryCode string
 }
 
 type AvailableName struct {
 	ID          int32
 	Name        string
-	CountryCode sql.NullString
+	CountryCode string
 }
 
 type AvailablePassword struct {
@@ -32,8 +28,7 @@ type Country struct {
 
 type User struct {
 	ID          int32
-	Name        sql.NullString
-	LastName    sql.NullString
-	Password    sql.NullString
-	CountryCode sql.NullString
+	Username    string
+	Password    string
+	CountryCode string
 }

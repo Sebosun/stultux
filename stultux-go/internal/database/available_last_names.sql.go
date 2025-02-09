@@ -7,7 +7,6 @@ package database
 
 import (
 	"context"
-	"database/sql"
 )
 
 const insertLastName = `-- name: InsertLastName :one
@@ -22,7 +21,7 @@ RETURNING id, name, country_code
 
 type InsertLastNameParams struct {
 	Name        string
-	CountryCode sql.NullString
+	CountryCode string
 }
 
 func (q *Queries) InsertLastName(ctx context.Context, arg InsertLastNameParams) (AvailableLast, error) {
