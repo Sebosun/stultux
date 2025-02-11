@@ -5,10 +5,21 @@ import BaseInput from '@/components/ui/BaseInput.vue'
 
 const login = ref('dupa')
 const password = ref('dupa')
+const router = useRouter()
 
 definePageMeta({
   layout: 'centered-layout',
 })
+
+const onSubmit = (submitCase: 'login' | 'register') => {
+  if (submitCase === 'login') {
+    return
+  }
+
+  if (submitCase === 'register') {
+    router.push('/register')
+  }
+}
 </script>
 
 <template>
@@ -39,14 +50,14 @@ definePageMeta({
         <div>
           <BaseButton
             class="mb-4 w-full"
-            @click="$colorMode.preference = 'dark'"
+            @click="onSubmit('login')"
           >
             Login
           </BaseButton>
 
           <BaseButton
             class="w-full"
-            @click="$colorMode.preference = 'light'"
+            @click="onSubmit('register')"
           >
             Create Account
           </BaseButton>
