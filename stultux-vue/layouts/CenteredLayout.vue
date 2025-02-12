@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import BaseButton from '@/components/ui/BaseButton.vue'
-
 const route = useRoute()
 
 useHead({
@@ -17,13 +15,13 @@ useHead({
     </h1>
     <header class="absolute right-0">
       <div class="pt-4 flex justify-end gap-4">
-        <BaseButton @click="$colorMode.preference = 'light'">
+        <UIBaseButton @click="$colorMode.preference = 'light'">
           Light
-        </BaseButton>
+        </UIBaseButton>
 
-        <BaseButton @click="$colorMode.preference = 'dark'">
+        <UIBaseButton @click="$colorMode.preference = 'dark'">
           Dark
-        </BaseButton>
+        </UIBaseButton>
 
         <button />
       </div>

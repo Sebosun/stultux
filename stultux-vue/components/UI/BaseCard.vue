@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { color } = defineProps<{
-  color: 'black' | 'brand' | 'red'
+  color?: 'black' | 'brand' | 'red'
 }>()
 </script>
 
@@ -43,4 +43,3 @@ const { color } = defineProps<{
     }
 }
 </style>
-
