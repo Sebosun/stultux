@@ -26,11 +26,28 @@ const onOptClick = (val: SelectValue<any>) => {
 <template>
   <div class="base_select">
     <button
-      class="base_select__button "
+      class="base_select__button"
       role="listbox"
       @click="showDropdown = !showDropdown"
     >
-      {{ value?.value }}
+      <span>
+        {{ value?.value }}
+      </span>
+      <Transition
+        name="arrow-up"
+        mode="out-in"
+      >
+        <Icon
+          v-if="showDropdown"
+          name="material-symbols:expand-less"
+          class="text-white text-xl"
+        />
+        <Icon
+          v-else
+          name="material-symbols:expand-more"
+          class="text-white text-xl"
+        />
+      </Transition>
     </button>
     <Transition name="slide-up">
       <ul
@@ -61,10 +78,11 @@ const onOptClick = (val: SelectValue<any>) => {
         padding: 9px 8px;
 
         display: flex;
-        justify-items: center;
+        justify-content: space-between;
 
         border: 1px solid var(--border);
         border-radius: 2px;
+
     }
 
     &__list {
@@ -76,6 +94,7 @@ const onOptClick = (val: SelectValue<any>) => {
     }
 
     &__item {
+        cursor: pointer;
         padding: 9px 8px;
 
         background: var(--primary-bg);
@@ -102,5 +121,16 @@ const onOptClick = (val: SelectValue<any>) => {
     transform: translateY(30px);
     box-shadow: 0.25rem 0.25rem 1rem #f85552;
     filter: blur(5px);
+}
+
+.arrow-up-enter-active,
+.arrow-up-leave-active {
+    transition: all 0.20s ease-out;
+}
+
+.arrow-up-enter-from,
+.arrow-up-leave-to {
+    transform: translateY(5px);
+    opacity: 0;
 }
 </style>

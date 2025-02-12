@@ -20,8 +20,7 @@ const { color } = defineProps<{
 <style scoped lang="scss">
 .gumroadish-card {
     &:hover {
-        transition: all;
-        transition-duration: 0.2s;
+        transition: box-shadow 0.2s;
         /* transform: translate(-0.25rem, -0.25rem); */
         box-shadow: 0.25rem 0.25rem 0rem #f85552;
     }
