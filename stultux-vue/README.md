@@ -73,3 +73,6 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+Figma:
+https://www.figma.com/design/7r0G4kkJQx4V6B5Zf0JaDq/Untitled?node-id=1-4&t=qtfJ6KZNYV13AqNX-0
