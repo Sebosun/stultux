@@ -12,5 +12,6 @@
       font-style: normal;
     --primary-bg: #09090b;
     --secondary-bg: oklch(0.274 0.006 286.033);
+    --border: #ffffff;
 }
 </style>
