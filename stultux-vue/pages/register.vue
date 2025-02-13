@@ -5,8 +5,10 @@ definePageMeta({
   layout: 'centered-layout',
 })
 
-interface User {
-
+export interface Result {
+  firstNames: string[]
+  lastNames: string[]
+  passwords: string[]
 }
 
 const arr = ref<Array<SelectValue<string>>>([
@@ -20,15 +22,24 @@ const arr = ref<Array<SelectValue<string>>>([
   },
 ])
 
+const vals = ref<Result>()
+
+const passwrdOptions = computed(() => {
+  if (!vals.value) return []
+  return vals.value?.passwords.map((item) => {
+    return { label: item, value: item }
+  })
+})
+
 const BASE_URL = 'http://localhost:1323/api/v1'
 onMounted(async () => {
-  const result = await $fetch(`${BASE_URL}/registration`, {
+  const result = await $fetch<Result>(`${BASE_URL}/registration`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   })
-  console.log(result)
+  vals.value = result
 })
 </script>
 
@@ -39,7 +50,7 @@ onMounted(async () => {
       class="py-40"
     >
       <div class="mx-auto flex max-w-[300px] flex-col justify-center gap-4">
-        <UIBaseSelect :options="arr" />
+        <UIBaseSelect :options="passwrdOptions" />
         dupa
       </div>
     </UIBaseCard>
