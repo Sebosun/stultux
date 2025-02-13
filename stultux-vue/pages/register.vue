@@ -5,6 +5,10 @@ definePageMeta({
   layout: 'centered-layout',
 })
 
+interface User {
+
+}
+
 const arr = ref<Array<SelectValue<string>>>([
   {
     label: 'Naruto',
@@ -15,6 +19,17 @@ const arr = ref<Array<SelectValue<string>>>([
     value: 'Saske',
   },
 ])
+
+const BASE_URL = 'http://localhost:1323/api/v1'
+onMounted(async () => {
+  const result = await $fetch(`${BASE_URL}/registration`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+  console.log(result)
+})
 </script>
 
 <template>
