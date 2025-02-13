@@ -86,6 +86,9 @@ const onOptClick = (val: SelectValue<any>) => {
     }
 
     &__list {
+        z-index: 1;
+        max-height: 200px;
+        overflow-y: auto;
         width: 100%;
         position: absolute;
         margin-top: 10px;

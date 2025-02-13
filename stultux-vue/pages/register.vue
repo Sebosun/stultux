@@ -31,6 +31,20 @@ const passwrdOptions = computed(() => {
   })
 })
 
+const nameOptions = computed(() => {
+  if (!vals.value) return []
+  return vals.value?.firstNames.map((item) => {
+    return { label: item, value: item }
+  })
+})
+
+const lastNameOptions = computed(() => {
+  if (!vals.value) return []
+  return vals.value?.lastNames.map((item) => {
+    return { label: item, value: item }
+  })
+})
+
 const BASE_URL = 'http://localhost:1323/api/v1'
 onMounted(async () => {
   const result = await $fetch<Result>(`${BASE_URL}/registration`, {
@@ -50,6 +64,8 @@ onMounted(async () => {
       class="py-40"
     >
       <div class="mx-auto flex max-w-[300px] flex-col justify-center gap-4">
+        <UIBaseSelect :options="nameOptions" />
+        <UIBaseSelect :options="lastNameOptions" />
         <UIBaseSelect :options="passwrdOptions" />
         dupa
       </div>
