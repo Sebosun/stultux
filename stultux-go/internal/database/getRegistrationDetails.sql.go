@@ -9,38 +9,86 @@ import (
 	"context"
 )
 
-const getRegistrationDetails = `-- name: GetRegistrationDetails :many
-SELECT 
-    n.name AS first_name,
-    l.name AS last_name,
-    p.password
-FROM 
-    available_names n
-CROSS JOIN 
-    available_last l
-CROSS JOIN 
-    available_passwords p
+const getLastNames = `-- name: GetLastNames :many
+SELECT
+    name
+FROM
+    available_last
 `
 
-type GetRegistrationDetailsRow struct {
-	FirstName string
-	LastName  string
-	Password  string
-}
-
-func (q *Queries) GetRegistrationDetails(ctx context.Context) ([]GetRegistrationDetailsRow, error) {
-	rows, err := q.db.QueryContext(ctx, getRegistrationDetails)
+func (q *Queries) GetLastNames(ctx context.Context) ([]string, error) {
+	rows, err := q.db.QueryContext(ctx, getLastNames)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
-	var items []GetRegistrationDetailsRow
+	var items []string
 	for rows.Next() {
-		var i GetRegistrationDetailsRow
-		if err := rows.Scan(&i.FirstName, &i.LastName, &i.Password); err != nil {
+		var name string
+		if err := rows.Scan(&name); err != nil {
 			return nil, err
 		}
-		items = append(items, i)
+		items = append(items, name)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const getNames = `-- name: GetNames :many
+SELECT
+    name
+FROM
+    available_names
+`
+
+func (q *Queries) GetNames(ctx context.Context) ([]string, error) {
+	rows, err := q.db.QueryContext(ctx, getNames)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []string
+	for rows.Next() {
+		var name string
+		if err := rows.Scan(&name); err != nil {
+			return nil, err
+		}
+		items = append(items, name)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const getPasswords = `-- name: GetPasswords :many
+SELECT
+    password
+FROM
+    available_passwords
+`
+
+func (q *Queries) GetPasswords(ctx context.Context) ([]string, error) {
+	rows, err := q.db.QueryContext(ctx, getPasswords)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []string
+	for rows.Next() {
+		var password string
+		if err := rows.Scan(&password); err != nil {
+			return nil, err
+		}
+		items = append(items, password)
 	}
 	if err := rows.Close(); err != nil {
 		return nil, err
