@@ -59,16 +59,24 @@ onMounted(async () => {
 
 <template>
   <div class="bg-[#f2ebdc] dark:bg-zinc-950 dark:text-white">
-    <UIBaseCard
-      color="red"
-      class="py-40"
-    >
+    <div class="py-40">
       <div class="mx-auto flex max-w-[300px] flex-col justify-center gap-4">
-        <UIBaseSelect :options="nameOptions" />
-        <UIBaseSelect :options="lastNameOptions" />
-        <UIBaseSelect :options="passwrdOptions" />
-        dupa
+        <UIBaseSelect
+          name="First name"
+          label="First name"
+          :options="nameOptions"
+        />
+        <UIBaseSelect
+          name="Last Name"
+          label="First name"
+          :options="lastNameOptions"
+        />
+        <UIBaseSelect
+          name="Password"
+          label="First name"
+          :options="passwrdOptions"
+        />
       </div>
-    </UIBaseCard>
+    </div>
   </div>
 </template>

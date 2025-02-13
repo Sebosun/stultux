@@ -11,7 +11,8 @@
       font-weight: 400;
       font-style: normal;
     --primary-bg: #09090b;
-    --secondary-bg: oklch(0.274 0.006 286.033);
+    --brand: #f85552;
+    --secondary-bg: #822020;
     --border: #ffffff;
 }
 </style>

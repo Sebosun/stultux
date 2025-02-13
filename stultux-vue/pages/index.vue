@@ -20,10 +20,7 @@ const onSubmit = (submitCase: 'login' | 'register') => {
 
 <template>
   <div class="bg-[#f2ebdc] dark:bg-zinc-950 dark:text-white">
-    <UIBaseCard
-      color="red"
-      class="py-40"
-    >
+    <div class="py-40">
       <div class="mx-auto flex max-w-[300px] flex-col justify-center gap-4">
         <div>
           <UIBaseInput
@@ -59,6 +56,6 @@ const onSubmit = (submitCase: 'login' | 'register') => {
           </UIBaseButton>
         </div>
       </div>
-    </UIBaseCard>
+    </div>
   </div>
 </template>

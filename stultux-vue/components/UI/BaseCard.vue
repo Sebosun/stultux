@@ -34,7 +34,7 @@ const { color } = defineProps<{
     }
 
     &--brand:hover {
-        box-shadow: 0.25rem 0.25rem 0rem #f85552;
+        box-shadow: 0.25rem 0.25rem 0rem var(--brand);
     }
 
     &--red:hover {

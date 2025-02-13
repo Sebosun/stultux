@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { onClickOutside } from '@vueuse/core'
+
 export type SelectValue<T> = {
   value: T
   label: string
@@ -6,6 +8,8 @@ export type SelectValue<T> = {
 
 const props = defineProps<{
   icon?: string
+  name: string
+  label: string
   options: SelectValue<any>[] // eslint-ignore-line
 }>()
 
@@ -17,48 +21,64 @@ onBeforeMount(() => {
 
 const showDropdown = ref<boolean>(false)
 
+const hideDropdown = () => {
+  console.log('hideDropdown')
+  showDropdown.value = false
+}
+
 const onOptClick = (val: SelectValue<any>) => {
   value.value = val
   showDropdown.value = false
 }
+
+const labelRef = ref<HTMLElement | null>(null)
+
+onClickOutside(labelRef, hideDropdown)
 </script>
 
 <template>
-  <div class="base_select">
-    <button
-      class="base_select__button"
-      role="listbox"
-      @click="showDropdown = !showDropdown"
+  <div class="base-select">
+    <UIBaseLabel
+      ref="labelRef"
+      :label="label"
+      :name="name"
     >
-      <span>
-        {{ value?.value }}
-      </span>
-      <Transition
-        name="arrow-up"
-        mode="out-in"
+      <button
+        class="base-select__button"
+        role="listbox"
+        @click="showDropdown = !showDropdown"
       >
-        <Icon
-          v-if="showDropdown"
-          name="material-symbols:expand-less"
-          class="text-white text-xl"
-        />
-        <Icon
-          v-else
-          name="material-symbols:expand-more"
-          class="text-white text-xl"
-        />
-      </Transition>
-    </button>
+        <span>
+          {{ value?.value ?? "  " }}
+        </span>
+        <Transition
+          name="arrow-up"
+          mode="out-in"
+        >
+          <Icon
+            v-if="showDropdown"
+            name="material-symbols:expand-less"
+            class="text-white text-xl"
+          />
+          <Icon
+            v-else
+            name="material-symbols:expand-more"
+            class="text-white text-xl"
+          />
+        </Transition>
+      </button>
+    </UIBaseLabel>
     <Transition name="slide-up">
       <ul
         v-show="showDropdown"
-        class="base_select__list"
+        class="base-select__list"
       >
         <li
           v-for="opt in options"
           :key="opt.label"
           role="option"
-          class="base_select__item"
+          class="base-select__item"
+          :class="{ 'base-select__item--chosen': opt.value === value?.value }"
           @click="onOptClick(opt)"
         >
           {{ opt.label }}
@@ -69,16 +89,18 @@ const onOptClick = (val: SelectValue<any>) => {
 </template>
 
 <style scoped lang="scss">
-.base_select {
+.base-select {
     position: relative;
     width: 100%;
 
     &__button {
         width: 100%;
         padding: 9px 8px;
+        min-height: 48px;
 
         display: flex;
         justify-content: space-between;
+        align-items: center;
 
         border: 1px solid var(--border);
         border-radius: 2px;
@@ -102,6 +124,14 @@ const onOptClick = (val: SelectValue<any>) => {
 
         background: var(--primary-bg);
         border-radius: 2px;
+
+        &--chosen {
+            background: var(--brand);
+        }
+
+        &:hover {
+            background: var(--brand);
+        }
     }
 }
 
