@@ -46,7 +46,7 @@ onClickOutside(labelRef, hideDropdown)
       <button
         class="base-select__button"
         role="listbox"
-        @click="showDropdown = !showDropdown"
+        @click.stop.prevent="showDropdown = !showDropdown"
       >
         <span>
           {{ value?.value ?? "  " }}

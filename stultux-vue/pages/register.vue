@@ -55,12 +55,32 @@ onMounted(async () => {
   })
   vals.value = result
 })
+
+const onSubmit = () => {
+  const payload = {
+    first_name: vals.value?.firstNames[0],
+    last_name: vals.value?.lastNames[0],
+    password: vals.value?.passwords[0],
+  }
+
+  const result = $fetch(`${BASE_URL}/user`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+  console.log('submit')
+}
 </script>
 
 <template>
   <div class="bg-[#f2ebdc] dark:bg-zinc-950 dark:text-white">
     <div class="py-40">
-      <div class="mx-auto flex max-w-[300px] flex-col justify-center gap-4">
+      <form
+        class="mx-auto flex max-w-[300px] flex-col justify-center gap-4"
+        @submit.prevent="onSubmit"
+      >
         <UIBaseSelect
           name="First name"
           label="First name"
@@ -76,7 +96,10 @@ onMounted(async () => {
           label="First name"
           :options="passwrdOptions"
         />
-      </div>
+        <UIBaseButton class="w-full">
+          Register
+        </UIBaseButton>
+      </form>
     </div>
   </div>
 </template>
